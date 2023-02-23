@@ -96,6 +96,13 @@ impl Html for Container {
     }
 }
 
+impl fmt::Display for Container {
+    /// Converts this set of `Container` to an html tag.
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "{}{}{}", self.tag, self.elements, self.attr)
+    }
+}
+
 impl HtmlContainer for Container {
     #[inline]
     fn add_html<H: Html>(&mut self, content: H) {

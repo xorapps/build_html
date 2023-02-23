@@ -5,7 +5,7 @@
 
 use crate::attributes::Attributes;
 use crate::Html;
-use std::fmt::{Display, Write};
+use std::fmt::{self, Display, Write};
 
 /// Parse the provided slice of elements into a table row
 fn write_table_row<T>(aggregator: &mut String, row: T, cell_tag: &str)
@@ -72,6 +72,13 @@ impl Html for Table {
             thead = self.thead,
             tbody = self.tbody,
         )
+    }
+}
+
+impl fmt::Display for Table {
+    /// Converts this set of `Container` to an html tag.
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "{}{}{}", self.thead, self.tbody, self.attr)
     }
 }
 
