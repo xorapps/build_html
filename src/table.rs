@@ -64,6 +64,16 @@ pub struct Table {
     attr: Attributes,
 }
 
+impl Display for Table {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.debug_struct("Table")
+            .field("thead", &self.thead)
+            .field("tbody", &self.tbody)
+            .field("attr", &self.attr)
+            .finish()
+    }
+}
+
 impl Html for Table {
     fn to_html_string(&self) -> String {
         format!(
