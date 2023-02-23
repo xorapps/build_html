@@ -85,6 +85,16 @@ pub struct Container {
     attr: Attributes,
 }
 
+impl Display for Container {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        f.debug_struct("Container")
+            .field("tag", &self.tag)
+            .field("elements", &self.elements)
+            .field("attr", &self.attr)
+            .finish()
+    }
+}
+
 impl Html for Container {
     fn to_html_string(&self) -> String {
         format!(
